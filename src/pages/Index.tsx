@@ -1,14 +1,41 @@
-// Update this page (the content is just a fallback if you fail to update the page)
+import React from 'react';
+import MainAppLayout from '@/components/layout/MainAppLayout';
+import PageHeader from '@/components/Dashboard/PageHeader';
+import StatsCardGrid from '@/components/Dashboard/StatsCardGrid';
+import PortfolioOverview from '@/components/Dashboard/PortfolioOverview';
+import MarketGraph from '@/components/Dashboard/MarketGraph';
+import CryptoStatsList from '@/components/Dashboard/CryptoStatsList';
 
-const Index = () => {
+interface BreadcrumbItem {
+  label: string;
+  path?: string;
+}
+
+const CryptoDashboardPage: React.FC = () => {
+  const breadcrumbs: BreadcrumbItem[] = [
+    { label: "Dashboards", path: "#" }, // Placeholder path for Dashboards
+    { label: "Crypto" },
+  ];
+
   return (
-    <div className="min-h-screen flex items-center justify-center bg-gray-100">
-      <div className="text-center">
-        <h1 className="text-4xl font-bold mb-4">Welcome to Your Blank App</h1>
-        <p className="text-xl text-gray-600">Start building your amazing project here!</p>
+    <MainAppLayout>
+      <div className="space-y-6">
+        <PageHeader title="Crypto" breadcrumbs={breadcrumbs} />
+        
+        <StatsCardGrid />
+        
+        <div className="grid grid-cols-1 lg:grid-cols-[2fr_3fr] gap-6 items-start">
+          {/* Left column: PortfolioOverview should define its own internal structure */}
+          <PortfolioOverview />
+          
+          {/* Right column: MarketGraph should define its own internal structure */}
+          <MarketGraph />
+        </div>
+        
+        <CryptoStatsList />
       </div>
-    </div>
+    </MainAppLayout>
   );
 };
 
-export default Index;
+export default CryptoDashboardPage;
